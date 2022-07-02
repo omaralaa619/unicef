@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
-import New from "./screens/New";
 import Home from "./screens/Home";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import Header from "./components/Header";
 import EntryScreen from "./screens/EntryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import NewEntryScreen from "./screens/NewEntryScreen";
 import "./App.css";
 
 function App() {
@@ -46,9 +46,8 @@ function App() {
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/new" element={<NewEntryScreen />} />
         <Route path="/entry/:id" element={<EntryScreen entries={entries} />} />
-
-        <Route path="/new" element={<New />} />
       </Routes>
     </div>
   );

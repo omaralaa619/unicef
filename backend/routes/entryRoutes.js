@@ -5,10 +5,11 @@ import {
   getEntryById,
   getEntries,
   deleteEntry,
+  createEntry,
 } from "../controllers/entryController.js";
 
 // fetch all entries
-router.route("/").get(getEntries);
+router.route("/").get(getEntries).post(createEntry);
 
 router.route("/:id").get(getEntryById).delete(protect, deleteEntry);
 

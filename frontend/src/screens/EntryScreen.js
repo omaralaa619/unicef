@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 const EntryScreen = () => {
@@ -18,6 +18,9 @@ const EntryScreen = () => {
 
   return (
     <div>
+      <Link to={`/`}>
+        <button>back</button>
+      </Link>
       <h1>{entry.title}</h1>
     </div>
   );

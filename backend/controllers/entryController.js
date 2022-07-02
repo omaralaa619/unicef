@@ -32,4 +32,15 @@ const deleteEntry = asyncHandler(async (req, res) => {
   }
 });
 
-export { getEntryById, getEntries, deleteEntry };
+const createEntry = asyncHandler(async (req, res) => {
+  const entry = new Entry({
+    //user: req.user._id,
+    title: req.body.title,
+    description: req.body.description,
+  });
+
+  const createdEntry = await entry.save();
+  res.status(201).json(entry);
+});
+
+export { getEntryById, getEntries, deleteEntry, createEntry };
