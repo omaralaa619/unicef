@@ -1,12 +1,19 @@
 import React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import EntryList from "./EntryList";
 
 const Home = (props) => {
   return (
     <>
-      {!props.loading && <EntryList entries={props.entries} />}
-      {props.loading && <h2>Loading...</h2>}
+      {!props.loading && (
+        <EntryList
+          entries={props.entries}
+          deleted={props.deleted}
+          delete={props.delete}
+        />
+      )}
+      {props.loading && <CircularProgress />}
     </>
   );
 };

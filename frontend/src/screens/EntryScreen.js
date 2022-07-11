@@ -14,7 +14,7 @@ const EntryScreen = () => {
       setEntry(data);
     };
     fetchEntry();
-  }, [match.id]);
+  }, [match.id, setEntry]);
 
   return (
     <div>

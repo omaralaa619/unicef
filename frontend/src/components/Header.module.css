@@ -1,0 +1,26 @@
+header {
+  background: #1cabe2;
+  color: white;
+}
+
+.headercontainer {
+  width: 90%;
+  margin: auto;
+  height: 6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navlinks {
+  display: flex;
+  width: 30em;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.logtainer {
+  height: 60px;
+}

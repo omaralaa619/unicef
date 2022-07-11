@@ -40,7 +40,24 @@ const createEntry = asyncHandler(async (req, res) => {
   });
 
   const createdEntry = await entry.save();
-  res.status(201).json(entry);
+  res.status(201).json(createdEntry);
 });
 
-export { getEntryById, getEntries, deleteEntry, createEntry };
+const updateEntry = asyncHandler(async (req, res) => {
+  const { title, description } = req.body;
+
+  const entry = await Entry.findById(req.params.id);
+
+  if (entry) {
+    entry.title = title;
+    entry.description = description;
+
+    const updatedEntry = await entry.save();
+    res.json(updatedEntry);
+  } else {
+    res.status(404);
+    throw new Error("product not found");
+  }
+});
+
+export { getEntryById, getEntries, deleteEntry, createEntry, updateEntry };

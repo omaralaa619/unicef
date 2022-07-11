@@ -6,11 +6,16 @@ import {
   getEntries,
   deleteEntry,
   createEntry,
+  updateEntry,
 } from "../controllers/entryController.js";
 
 // fetch all entries
 router.route("/").get(getEntries).post(createEntry);
 
-router.route("/:id").get(getEntryById).delete(protect, deleteEntry);
+router
+  .route("/:id")
+  .get(getEntryById)
+  .delete(protect, deleteEntry)
+  .put(updateEntry);
 
 export default router;

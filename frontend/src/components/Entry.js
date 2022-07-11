@@ -16,6 +16,8 @@ const Entry = (props) => {
       };
 
       await axios.delete(`api/entries/${props.entry._id}`, config);
+
+      window.location.reload(false);
     } catch (error) {
       console.log(error);
     }

@@ -8,10 +8,13 @@ import Header from "./components/Header";
 import EntryScreen from "./screens/EntryScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import NewEntryScreen from "./screens/NewEntryScreen";
+import EntryEditScreen from "./screens/EntryEditScreen";
 import "./App.css";
 
 function App() {
   const [entries, setEntries] = useState([]);
+
+  const [deleted, setDeleted] = useState("a7a");
 
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +34,7 @@ function App() {
     };
 
     fetchEntries();
-  }, [setEntries]);
+  }, [setEntries, setDeleted]);
 
   console.log(loading);
 
@@ -41,12 +44,20 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home entries={entries} loading={loading} />}
+          element={
+            <Home
+              entries={entries}
+              loading={loading}
+              deleted={setDeleted}
+              delete={deleted}
+            />
+          }
         />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
         <Route path="/new" element={<NewEntryScreen />} />
+        <Route path="/entry/edit/:id" element={<EntryEditScreen />} />
         <Route path="/entry/:id" element={<EntryScreen entries={entries} />} />
       </Routes>
     </div>

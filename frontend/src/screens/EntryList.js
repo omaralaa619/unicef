@@ -5,7 +5,12 @@ const EntryList = (props) => {
   return (
     <ul>
       {props.entries.map((entry) => (
-        <Entry entry={entry} key={entry._id} />
+        <Entry
+          entry={entry}
+          key={entry._id}
+          deleted={props.deleted}
+          delete={props.delete}
+        />
       ))}
     </ul>
   );
