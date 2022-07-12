@@ -25,7 +25,7 @@ const Header = () => {
         </Link>
         <ul className={classes.navlinks}>
           <Link to={`/`}>
-            <li>Home</li>
+            <li>Home a7a</li>
           </Link>
           <Link to={`/login`}>
             <li>Login</li>
