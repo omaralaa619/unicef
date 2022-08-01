@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
-import Avatar from "@mui/material/Avatar";
 
 import classes from "./Header.module.css";
 import unicefLogo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
+
+import AvatarIcon from "./AvatarIcon";
 
 const Header = (props) => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const Header = (props) => {
             Search
           </li>
 
-          {userInfo && <Avatar>OA</Avatar>}
+          {userInfo && <AvatarIcon />}
 
           {userInfo && (
             <li>

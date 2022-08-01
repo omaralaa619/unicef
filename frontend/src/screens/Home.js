@@ -18,7 +18,9 @@ const Home = (props) => {
     setfilteredEntries([]);
   };
 
-  const filtered = props.entries.filter((entry) => {
+  let filtered = [];
+
+  filtered = props.entries.filter((entry) => {
     return entry.institutionName.includes(searchText);
   });
 
@@ -54,7 +56,7 @@ const Home = (props) => {
             placeholder="search"
             value={searchText}
             onChange={(e) => setSeachText(e.target.value)}
-            fullWidth="true"
+            fullWidth={true}
           />
           <div>
             <Button variant="contained" size="small" onClick={clearHandler}>
