@@ -21,7 +21,11 @@ const EntryScreen = () => {
       <Link to={`/`}>
         <button>back</button>
       </Link>
-      <h1>{entry.title}</h1>
+      <h1>{entry.emergencyCases}</h1>
+      <h1>{entry.institutionType}</h1>
+      <h1>{entry.age1}</h1>
+      <h1>{entry.age2}</h1>
+      <h1>{entry.age3}</h1>
     </div>
   );
 };

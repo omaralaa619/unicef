@@ -7,7 +7,7 @@ import classes from "./Header.module.css";
 import unicefLogo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -17,6 +17,10 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logout());
   };
+
+  const searchHandler = () => {
+    props.setIsSearchOpen(!props.isSearchOpen);
+  };
   return (
     <header>
       <div className={classes.headercontainer}>
@@ -25,22 +29,43 @@ const Header = () => {
         </Link>
         <ul className={classes.navlinks}>
           <Link to={`/`}>
-            <li>Home a7a</li>
-          </Link>
-          <Link to={`/login`}>
-            <li>Login</li>
-          </Link>
-          <Link to={`/profile`}>
-            <li>profile</li>
-          </Link>
-          <Link to={`/new`}>
-            <li>create Entry</li>
+            <li>Home</li>
           </Link>
 
-          {userInfo && <Avatar>OA</Avatar>}
-          <li>
-            <button onClick={logoutHandler}>Logout</button>
+          {!userInfo && (
+            <Link to={`/login`}>
+              <li>Login</li>
+            </Link>
+          )}
+
+          {userInfo && (
+            <Link to={`/profile`}>
+              <li>profile</li>
+            </Link>
+          )}
+
+          {userInfo && (
+            <Link to={`/new`}>
+              <li>create Entry</li>
+            </Link>
+          )}
+
+          {userInfo && (
+            <Link to={`/register`}>
+              <li>create user</li>
+            </Link>
+          )}
+          <li className={classes.search} onClick={searchHandler}>
+            Search
           </li>
+
+          {userInfo && <Avatar>OA</Avatar>}
+
+          {userInfo && (
+            <li>
+              <button onClick={logoutHandler}>Logout</button>
+            </li>
+          )}
         </ul>
       </div>
     </header>

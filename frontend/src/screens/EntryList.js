@@ -1,16 +1,12 @@
 import React from "react";
 import Entry from "../components/Entry";
+import classes from "./EntryList.module.css";
 
 const EntryList = (props) => {
   return (
-    <ul>
+    <ul className={classes.list}>
       {props.entries.map((entry) => (
-        <Entry
-          entry={entry}
-          key={entry._id}
-          deleted={props.deleted}
-          delete={props.delete}
-        />
+        <Entry entry={entry} key={entry._id} setDeleted={props.setDeleted} />
       ))}
     </ul>
   );

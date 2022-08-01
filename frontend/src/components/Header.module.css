@@ -24,3 +24,11 @@ header {
 .logtainer {
   height: 60px;
 }
+
+.navlinks a {
+  color: white;
+  text-decoration: none;
+}
+.search {
+  cursor: pointer;
+}

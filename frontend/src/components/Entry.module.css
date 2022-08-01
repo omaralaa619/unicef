@@ -1,0 +1,27 @@
+.entry {
+  border: 1px solid rgb(200, 200, 200);
+  padding: 0 3em 2em 3em;
+  margin: 2em;
+  width: 80%;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+.title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-weight: 400;
+}
+.info {
+  text-align: right;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info p {
+  margin-bottom: 1em;
+}
+.info span {
+  font-weight: 500;
+}

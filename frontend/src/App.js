@@ -13,10 +13,16 @@ import "./App.css";
 
 function App() {
   const [entries, setEntries] = useState([]);
-
-  const [deleted, setDeleted] = useState("a7a");
-
   const [loading, setLoading] = useState(false);
+
+  // when a new entry is created all entries are fetched again
+  const [created, setCreated] = useState(false);
+
+  // when a new entry is created all entries are fetched again
+  const [deleted, setDeleted] = useState(false);
+
+  //search bar state
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -34,29 +40,34 @@ function App() {
     };
 
     fetchEntries();
-  }, [setEntries, setDeleted]);
+  }, [setEntries, created, deleted]);
 
   console.log(loading);
 
   return (
     <div className="App">
-      <Header />
+      <Header isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
       <Routes>
         <Route
           path="/"
           element={
             <Home
               entries={entries}
+              setEntries={setEntries}
               loading={loading}
-              deleted={setDeleted}
-              delete={deleted}
+              deleted={deleted}
+              setDeleted={setDeleted}
+              isSearchOpen={isSearchOpen}
             />
           }
         />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
-        <Route path="/new" element={<NewEntryScreen />} />
+        <Route
+          path="/new"
+          element={<NewEntryScreen setCreated={setCreated} />}
+        />
         <Route path="/entry/edit/:id" element={<EntryEditScreen />} />
         <Route path="/entry/:id" element={<EntryScreen entries={entries} />} />
       </Routes>

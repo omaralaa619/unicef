@@ -1,13 +1,6 @@
-.form {
-  width: 50%;
-  margin: auto;
-  margin-top: 2em;
+.list {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.form button {
-  margin: 1em;
 }

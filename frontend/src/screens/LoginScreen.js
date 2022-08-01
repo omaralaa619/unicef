@@ -38,7 +38,7 @@ const Login = () => {
     <>
       <div className={classes.formcontainer}>
         <img className={classes.logtainer} src={unicefLogo} alt="" />
-        <form onSubmit={submitHandler}>
+        <form className={classes.form} onSubmit={submitHandler}>
           {error && <p>{error}</p>}
           <label htmlFor="email" className={classes.label}>
             Email

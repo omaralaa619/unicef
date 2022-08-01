@@ -35,8 +35,67 @@ const deleteEntry = asyncHandler(async (req, res) => {
 const createEntry = asyncHandler(async (req, res) => {
   const entry = new Entry({
     //user: req.user._id,
-    title: req.body.title,
-    description: req.body.description,
+    inChargeName: req.body.inChargeName,
+    institutionName: req.body.institutionName,
+    institutionType: req.body.institutionType,
+
+    institutionAdress: req.body.institutionAdress,
+    geographicAreaCovered: req.body.geographicAreaCovered,
+    contactInfoPerson1Name: req.body.contactInfoPerson1Name,
+    contactInfoPerson1Number: req.body.contactInfoPerson1Number,
+    contactInfoPerson1LandNumber: req.body.contactInfoPerson1LandNumber,
+    contactInfoPerson1Email: req.body.contactInfoPerson1Email,
+
+    contactInfoPerson2Number: req.body.contactInfoPerson2Number,
+    contactInfoPerson2LandNumber: req.body.contactInfoPerson2LandNumber,
+    contactInfoPerson2Email: req.body.contactInfoPerson2Email,
+
+    workedSince: req.body.workedSince,
+    ///////
+
+    // الفئات المتاح لها الخدمة
+
+    ageRange1: req.body.ageRange1,
+    ageRange2: req.body.ageRange2,
+    ageRange3: req.body.ageRange3,
+
+    sex: req.body.sex,
+    nationality: req.body.nationality,
+    disability: req.body.disability,
+    disabilityType: req.body.disabilityType,
+
+    doubleDisability: req.body.doubleDisability,
+    emergencyCases: req.body.emergencyCases,
+    /////
+
+    //معلومات إضافية عن الخدمة
+    serviceIsFree: req.body.serviceIsFree,
+    servicePrice: req.body.servicePrice,
+    serviceDays: req.body.serviceDays,
+    serviceHours: req.body.serviceHours,
+    emergencyHours: req.body.emergencyHours,
+
+    //الخدمات الإجتماعية/الدعم النفسي الإجتماعي
+    serviceProviderPsyc: req.body.serviceProviderPsyc,
+    serviveTypePhsyc: req.body.serviveTypePhsyc,
+    serviveTypePhsycOther: req.body.serviveTypePhsycOther,
+
+    //الخدمات القانونية والأمنية
+    serviceProviderSec: req.body.serviceProviderSec,
+    serviveTypeSec: req.body.serviveTypeSec,
+    serviveTypeSecOther: req.body.serviveTypeSecOther,
+
+    // الخدمات الدعم الصحي
+
+    serviceProvidermed: req.body.serviceProvidermed,
+    serviveTypemed: req.body.serviveTypemed,
+    serviveTypemedOther: req.body.serviveTypemedOther,
+
+    //امتطلبات واجراءات الحصول على الخدمة
+
+    terms: req.body.terms,
+    documentsRequired: req.body.documentsRequired,
+    basicActions: req.body.basicActions,
   });
 
   const createdEntry = await entry.save();
