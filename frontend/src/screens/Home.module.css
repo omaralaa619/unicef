@@ -11,3 +11,7 @@
 .form button {
   margin: 1em;
 }
+.form h2 {
+  margin-bottom: 1em;
+  font-size: 32px;
+}

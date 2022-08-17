@@ -1,9 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { logout } from "../actions/userActions";
 
 import Avatar from "@mui/material/Avatar";
-import { useSelector } from "react-redux";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+
+import Button from "@mui/material/Button";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Logout from "@mui/icons-material/Logout";
+import PersonAdd from "@mui/icons-material/PersonAdd";
+import PersonIcon from "@mui/icons-material/Person";
+
+import { useDispatch, useSelector } from "react-redux";
 
 const AvatarIcon = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -30,8 +57,62 @@ const AvatarIcon = () => {
 
   return (
     <>
-      <Avatar>{letterName}</Avatar>
-      <p onClick={click}>my name is</p>
+      <Button
+        endIcon={
+          <ArrowDropDownIcon
+            style={{
+              color: "white",
+              marginLeft: -10,
+              marginBottom: -7,
+            }}
+          />
+        }
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
+        <Avatar>{letterName}</Avatar>
+      </Button>
+      <Menu
+        style={{
+          marginLeft: -15,
+        }}
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PersonIcon fontSize="small" />
+          </ListItemIcon>
+          <Link to={`/profile`}>
+            <li>الحساب</li>
+          </Link>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          <Link to={`/register`}>
+            <li>إنشاء المستخدم</li>
+          </Link>
+        </MenuItem>
+
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          <li onClick={logoutHandler}>تسجيل خروج</li>
+        </MenuItem>
+      </Menu>
+      {/* / <p onClick={click}>my name is</p> */}
     </>
   );
 };

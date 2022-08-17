@@ -50,6 +50,7 @@ const Home = (props) => {
     <div className={classes.searchcontainer}>
       {props.isSearchOpen && (
         <form className={classes.form} onSubmit={searchHandler}>
+          <h2>البحث في قاعدة البيانات</h2>
           <TextField
             type="text"
             id="search"

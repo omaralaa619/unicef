@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 
 import classes from "./Entry.module.css";
 
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
+import EditIcon from "@mui/icons-material/Edit";
+
 const Entry = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -54,7 +59,34 @@ const Entry = (props) => {
         </div>
       </Link>
 
-      <button onClick={deleteHandler}>delete</button>
+      <div className={classes.buttons}>
+        {userInfo && (
+          <Button
+            style={{
+              color: "rgb(255, 55, 55)",
+              borderColor: "rgb(255, 55, 55)",
+            }}
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+            onClick={deleteHandler}
+          >
+            مسح
+          </Button>
+        )}
+        {userInfo && (
+          <Link to={`/entry/edit/${props.entry._id}`}>
+            <Button variant="outlined" startIcon={<EditIcon />}>
+              تعديل
+            </Button>
+          </Link>
+        )}
+
+        <Link to={`/entry/${props.entry._id}`}>
+          <Button startIcon={<ReadMoreIcon />} variant="contained">
+            اقرأ المزيد
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

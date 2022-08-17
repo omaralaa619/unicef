@@ -66,7 +66,17 @@ const Login = () => {
 
           <div className={classes.button}>
             <Button variant="contained" type="submit">
-              Login {loading && <CircularProgress color="secondary" />}
+              Login{" "}
+              {loading && (
+                <CircularProgress
+                  style={{
+                    color: "white",
+                    width: 18,
+                    height: 18,
+                    marginLeft: 10,
+                  }}
+                />
+              )}
             </Button>
           </div>
         </form>

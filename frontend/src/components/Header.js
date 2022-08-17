@@ -28,45 +28,31 @@ const Header = (props) => {
         <Link to={`/`}>
           <img className={classes.logtainer} src={unicefLogo} alt="" />
         </Link>
+
         <ul className={classes.navlinks}>
           <Link to={`/`}>
-            <li>Home</li>
+            <li className={classes.search} onClick={searchHandler}>
+              بحث
+            </li>
+          </Link>
+
+          <Link to={`/`}>
+            <li>الرئيسية</li>
           </Link>
 
           {!userInfo && (
             <Link to={`/login`}>
-              <li>Login</li>
-            </Link>
-          )}
-
-          {userInfo && (
-            <Link to={`/profile`}>
-              <li>profile</li>
+              <li>تسجيل الدخول</li>
             </Link>
           )}
 
           {userInfo && (
             <Link to={`/new`}>
-              <li>create Entry</li>
+              <li>إنشاء بيانات</li>
             </Link>
           )}
-
-          {userInfo && (
-            <Link to={`/register`}>
-              <li>create user</li>
-            </Link>
-          )}
-          <li className={classes.search} onClick={searchHandler}>
-            Search
-          </li>
 
           {userInfo && <AvatarIcon />}
-
-          {userInfo && (
-            <li>
-              <button onClick={logoutHandler}>Logout</button>
-            </li>
-          )}
         </ul>
       </div>
     </header>
