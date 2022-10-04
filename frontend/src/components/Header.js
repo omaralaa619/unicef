@@ -19,11 +19,15 @@ const Header = (props) => {
     dispatch(logout());
   };
 
+  const closeSearchHandler = () => {
+    props.setIsSearchOpen(false);
+  };
+
   const searchHandler = () => {
     props.setIsSearchOpen(!props.isSearchOpen);
   };
   return (
-    <header>
+    <header id="header">
       <div className={classes.headercontainer}>
         <Link to={`/`}>
           <img className={classes.logtainer} src={unicefLogo} alt="" />
@@ -47,12 +51,12 @@ const Header = (props) => {
           )}
 
           {userInfo && (
-            <Link to={`/new`}>
+            <Link to={`/new`} onClick={closeSearchHandler}>
               <li>إنشاء بيانات</li>
             </Link>
           )}
 
-          {userInfo && <AvatarIcon />}
+          {userInfo && <AvatarIcon closeSearch={closeSearchHandler} />}
         </ul>
       </div>
     </header>

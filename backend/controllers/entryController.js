@@ -103,13 +103,90 @@ const createEntry = asyncHandler(async (req, res) => {
 });
 
 const updateEntry = asyncHandler(async (req, res) => {
-  const { title, description } = req.body;
+  const {
+    inChargeName,
+    institutionName,
+    institutionType,
+    institutionAdress,
+    geographicAreaCovered,
+    contactInfoPerson1Name,
+    contactInfoPerson1Number,
+    contactInfoPerson1LandNumber,
+    contactInfoPerson1Email,
+    contactInfoPerson2Number,
+    contactInfoPerson2LandNumber,
+    contactInfoPerson2Email,
+    workedSince,
+    ageRange1,
+    ageRange2,
+    ageRange3,
+    sex,
+    nationality,
+    disability,
+    disabilityType,
+    doubleDisability,
+    emergencyCases,
+    serviceIsFree,
+    servicePrice,
+    serviceDays,
+    serviceHours,
+    emergencyHours,
+    serviceProviderPsyc,
+    serviveTypePhsyc,
+    serviveTypePhsycOther,
+    serviceProviderSec,
+    serviveTypeSec,
+    serviveTypeSecOther,
+    serviceProvidermed,
+    serviveTypemed,
+    serviveTypemedOther,
+    terms,
+    documentsRequired,
+    basicActions,
+  } = req.body;
 
   const entry = await Entry.findById(req.params.id);
 
   if (entry) {
-    entry.title = title;
-    entry.description = description;
+    entry.inChargeName = inChargeName;
+    entry.institutionName = institutionName;
+    entry.institutionType = institutionType;
+    entry.institutionAdress = institutionAdress;
+    entry.geographicAreaCovered = geographicAreaCovered;
+    entry.contactInfoPerson1Name = contactInfoPerson1Name;
+    entry.contactInfoPerson1Number = contactInfoPerson1Number;
+    entry.contactInfoPerson1LandNumber = contactInfoPerson1LandNumber;
+    entry.contactInfoPerson1Email = contactInfoPerson1Email;
+    entry.contactInfoPerson2Number = contactInfoPerson2Number;
+    entry.contactInfoPerson2LandNumber = contactInfoPerson2LandNumber;
+    entry.contactInfoPerson2Email = contactInfoPerson2Email;
+    entry.workedSince = workedSince;
+    entry.ageRange1 = ageRange1;
+    entry.ageRange2 = ageRange2;
+    entry.ageRange3 = ageRange3;
+    entry.sex = sex;
+    entry.nationality = nationality;
+    entry.disability = disability;
+    entry.disabilityType = disabilityType;
+    entry.doubleDisability = doubleDisability;
+    entry.emergencyCases = emergencyCases;
+    entry.serviceIsFree = serviceIsFree;
+    entry.servicePrice = servicePrice;
+    entry.serviceDays = serviceDays;
+    entry.serviceHours = serviceHours;
+    entry.emergencyHours = emergencyHours;
+    entry.serviceProviderPsyc = serviceProviderPsyc;
+    entry.serviveTypePhsyc = serviveTypePhsyc;
+    entry.serviveTypePhsycOther = serviveTypePhsycOther;
+    entry.serviceProviderSec = serviceProviderSec;
+    entry.serviveTypeSec = serviveTypeSec;
+    entry.serviveTypeSecOther = serviveTypeSecOther;
+    entry.serviceProvidermed = serviceProvidermed;
+    entry.serviveTypemed = serviveTypemed;
+    entry.serviveTypemedOther = serviveTypemedOther;
+    entry.terms = terms;
+    entry.documentsRequired = documentsRequired;
+    entry.basicActions = basicActions;
 
     const updatedEntry = await entry.save();
     res.json(updatedEntry);

@@ -4,8 +4,33 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  border: 3px solid rgb(186, 186, 186);
+  margin-top: 2em;
+  padding: 3em;
 }
 
 .form input {
   text-align: right;
+}
+.form label {
+  font-size: 18px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 43px;
+  margin-bottom: 0.5em;
+  color: rgb(23, 23, 23);
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid rgb(166, 166, 166);
+}
+.sub {
+  font-size: 28px;
+  margin-bottom: 1em;
+  font-weight: bold;
+  color: rgb(6, 26, 57);
+  margin-top: 1.5em;
 }

@@ -16,7 +16,7 @@ import PersonIcon from "@mui/icons-material/Person";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const AvatarIcon = () => {
+const AvatarIcon = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -91,7 +91,7 @@ const AvatarIcon = () => {
           <ListItemIcon>
             <PersonIcon fontSize="small" />
           </ListItemIcon>
-          <Link to={`/profile`}>
+          <Link to={`/profile`} onClick={props.closeSearch}>
             <li>الحساب</li>
           </Link>
         </MenuItem>
@@ -100,7 +100,7 @@ const AvatarIcon = () => {
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          <Link to={`/register`}>
+          <Link to={`/register`} onClick={props.closeSearch}>
             <li>إنشاء المستخدم</li>
           </Link>
         </MenuItem>
@@ -112,7 +112,6 @@ const AvatarIcon = () => {
           <li onClick={logoutHandler}>تسجيل خروج</li>
         </MenuItem>
       </Menu>
-      {/* / <p onClick={click}>my name is</p> */}
     </>
   );
 };

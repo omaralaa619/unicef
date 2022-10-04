@@ -7,7 +7,7 @@ import SearchEntryList from "../components/SearchEntryList";
 import classes from "./Home.module.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import Arrow from "../components/Arrow";
 const Home = (props) => {
   const [searchText, setSeachText] = useState("");
   const [searched, setSearched] = useState(false);
@@ -39,12 +39,20 @@ const Home = (props) => {
       content = <p>no entries found</p>;
     } else {
       content = (
-        <EntryList entries={props.entries} setDeleted={props.setDeleted} />
+        <>
+          <EntryList entries={props.entries} setDeleted={props.setDeleted} />
+          <Arrow />
+        </>
       );
     }
   }
   if (!props.loading && filteredEntries.length > 0) {
-    content = <SearchEntryList entries={filteredEntries} />;
+    content = (
+      <>
+        <SearchEntryList entries={filteredEntries} />
+        <Arrow />
+      </>
+    );
   }
   return (
     <div className={classes.searchcontainer}>
@@ -54,17 +62,17 @@ const Home = (props) => {
           <TextField
             type="text"
             id="search"
-            placeholder="search"
+            placeholder="بحث"
             value={searchText}
             onChange={(e) => setSeachText(e.target.value)}
             fullWidth={true}
           />
           <div>
             <Button variant="contained" size="small" onClick={clearHandler}>
-              Clear
+              إزالة
             </Button>
             <Button variant="contained" size="small" type="submit">
-              Search
+              بحث
             </Button>
           </div>
         </form>

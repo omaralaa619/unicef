@@ -6,7 +6,7 @@ const myfun = (string) => {
   console.log(myarr);
 
   for (let i = 0; i < myarr.length; i++) {
-    console.log(`${myarr[i]},`);
+    console.log(`entry.${myarr[i]} = ${myarr[i]};`);
   }
 };
 

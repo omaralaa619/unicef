@@ -5,6 +5,12 @@ import { useNavigate } from "react-router-dom";
 import classes from "./NewEntryScreen.module.css";
 import TextField from "@mui/material/TextField";
 
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+
 const NewEntryScreen = (props) => {
   //  البيانات الأساسية
   const [institutionName, setinstitutionName] = useState("");
@@ -70,6 +76,8 @@ const NewEntryScreen = (props) => {
   const [basicActions, setbasicActions] = useState("");
   //////////////
 
+  const [isDisability, setIsDisabilty] = useState(false);
+
   let navigate = useNavigate();
 
   const submitHandler = async (e) => {
@@ -131,16 +139,19 @@ const NewEntryScreen = (props) => {
   return (
     <>
       <form className={classes.form} onSubmit={submitHandler}>
+        <p className={classes.title}>إنشاء بيانات جديدة</p>
+        {/*       ////////////  البيانات الأساسية  //////////////// */}
+        <p className={classes.sub}>:البيانات الأساسية</p>
         <label htmlFor="institutionName">اسم الجهة</label>
         <TextField
           type="text"
+          autoComplete="off"
           id="institutionName"
           value={institutionName}
           size="small"
           margin="normal"
           onChange={(e) => setinstitutionName(e.target.value)}
         />
-
         <label htmlFor="inChargeName">اسم المقرر</label>
         <TextField
           type="text"
@@ -150,20 +161,23 @@ const NewEntryScreen = (props) => {
           value={inChargeName}
           onChange={(e) => setinchargeName(e.target.value)}
         />
-
-        <label htmlFor="emergencyCases">
-          هل تقدم الجهة خدماتها للحالات الطارئة مثل:حالات الإغتصاب وهتك العرض
-          والتحرش والتعذيب وإساءة المعاملة والإيذاء
-        </label>
-
-        <div onChange={(e) => setemergencyCases(e.target.value)}>
-          <input type="radio" name="emergencyCases" value="لا" />
-          نعم
-          <input type="radio" name="emergencyCases" value="نعم" />
-          لا
-        </div>
-
-        <label htmlFor="institutionType"></label>
+        <FormControl>
+          <label>
+            هل تقدم الجهة خدماتها للحالات الطارئة مثل:حالات الإغتصاب وهتك العرض
+            والتحرش والتعذيب وإساءة المعاملة والإيذاء
+          </label>
+          <RadioGroup
+            onChange={(e) => setemergencyCases(e.target.value)}
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+            }}
+          >
+            <FormControlLabel value="نعم" control={<Radio />} label="نعم" />
+            <FormControlLabel value="لا" control={<Radio />} label="لا" />
+          </RadioGroup>
+        </FormControl>
+        <label htmlFor="institutionType">تصنيف تبعية الجهة</label>
         <TextField
           type="text"
           id="institutionType"
@@ -172,7 +186,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setinstitutionType(e.target.value)}
         />
-        <label htmlFor="institutionAdress"></label>
+        <label htmlFor="institutionAdress">عنوان الجهة</label>
         <TextField
           type="text"
           id="institutionAdress"
@@ -181,7 +195,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setinstitutionAdress(e.target.value)}
         />
-        <label htmlFor="geographicAreaCovered"></label>
+        <label htmlFor="geographicAreaCovered">
+          لمناطق الجغرافية التي تغطيها الجهة بالخدمات
+        </label>
         <TextField
           type="text"
           id="geographicAreaCovered"
@@ -190,7 +206,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setgeographicAreaCovered(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson1Name"></label>
+        {/*    */}
+        <p className={classes.sub}>:بيانات مسئول الإتصال (1) </p>
+        <label htmlFor="contactInfoPerson1Name">الإسم </label>
         <TextField
           type="text"
           id="contactInfoPerson1Name"
@@ -199,7 +217,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson1Name(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson1Number"></label>
+        <label htmlFor="contactInfoPerson1Number">رقم الموبايل</label>
         <TextField
           type="text"
           id="contactInfoPerson1Number"
@@ -208,7 +226,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson1Number(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson1LandNumber"></label>
+        <label htmlFor="contactInfoPerson1LandNumber">التليفون الأرضي</label>
         <TextField
           type="text"
           id="contactInfoPerson1LandNumber"
@@ -217,7 +235,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson1LandNumber(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson1Email"></label>
+        <label htmlFor="contactInfoPerson1Email">
+          البريد الإلكترونى إن وجد
+        </label>
         <TextField
           type="text"
           id="contactInfoPerson1Email"
@@ -226,7 +246,8 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson1Email(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson2Number"></label>
+        <p className={classes.sub}>:بيانات مسئول الإتصال (2) </p>
+        <label htmlFor="contactInfoPerson2Number">رقم الموبايل</label>
         <TextField
           type="text"
           id="contactInfoPerson2Number"
@@ -235,7 +256,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson2Number(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson2LandNumber"></label>
+        <label htmlFor="contactInfoPerson2LandNumber">التليفون الأرضي</label>
         <TextField
           type="text"
           id="contactInfoPerson2LandNumber"
@@ -244,7 +265,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson2LandNumber(e.target.value)}
         />
-        <label htmlFor="contactInfoPerson2Email"></label>
+        <label htmlFor="contactInfoPerson2Email">
+          البريد الإلكترونى إن وجد
+        </label>
         <TextField
           type="text"
           id="contactInfoPerson2Email"
@@ -253,7 +276,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setcontactInfoPerson2Email(e.target.value)}
         />
-        <label htmlFor="workedSince"></label>
+        <label htmlFor="workedSince">
+          خبرة الجهة في تقديم تلك الخدمة (عدد سنوات الخبرة)
+        </label>
         <TextField
           type="text"
           id="workedSince"
@@ -262,6 +287,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setworkedSince(e.target.value)}
         />
+
+        {/* ////////////////// الفئات المتاح لها الخدمة /////////////////////////  */}
+        <p className={classes.sub}>:الفئات المتاح لها الخدمة </p>
         <label htmlFor="ageRange1"></label>
         <TextField
           type="text"
@@ -289,52 +317,103 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setageRange3(e.target.value)}
         />
-        <label htmlFor="sex"></label>
-        <TextField
-          type="text"
-          id="sex"
-          value={sex}
-          size="small"
-          margin="normal"
-          onChange={(e) => setsex(e.target.value)}
-        />
-        <label htmlFor="nationality"></label>
-        <TextField
-          type="text"
-          id="nationality"
-          value={nationality}
-          size="small"
-          margin="normal"
-          onChange={(e) => setnationality(e.target.value)}
-        />
-        <label htmlFor="disability"></label>
-        <TextField
-          type="text"
-          id="disability"
-          value={disability}
-          size="small"
-          margin="normal"
-          onChange={(e) => setdisability(e.target.value)}
-        />
-        <label htmlFor="disabilityType"></label>
-        <TextField
-          type="text"
-          id="disabilityType"
-          value={disabilityType}
-          size="small"
-          margin="normal"
-          onChange={(e) => setdisabilityType(e.target.value)}
-        />
-        <label htmlFor="doubleDisability"></label>
-        <TextField
-          type="text"
-          id="doubleDisability"
-          value={doubleDisability}
-          size="small"
-          margin="normal"
-          onChange={(e) => setdoubleDisability(e.target.value)}
-        />
-        <label htmlFor="serviceIsFree"></label>
+        <FormControl>
+          <label>الجنس</label>
+          <RadioGroup
+            onChange={(e) => setsex(e.target.value)}
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+            }}
+          >
+            <FormControlLabel value="ذكور" control={<Radio />} label="ذكور" />
+            <FormControlLabel value="اناث" control={<Radio />} label="اناث" />
+            <FormControlLabel
+              value="ذكور واناث معا"
+              control={<Radio />}
+              label="ذكور واناث معا"
+            />
+          </RadioGroup>
+        </FormControl>
+
+        <FormControl>
+          <label>الجنسية</label>
+          <RadioGroup
+            onChange={(e) => setnationality(e.target.value)}
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+            }}
+          >
+            <FormControlLabel
+              value="مصرببن فقط"
+              control={<Radio />}
+              label="مصرببن فقط"
+            />
+            <FormControlLabel
+              value="مصريين وغير مصريين"
+              control={<Radio />}
+              label="مصريين وغير مصريين"
+            />
+          </RadioGroup>
+        </FormControl>
+
+        <FormControl>
+          <label>ذوي إعاقة</label>
+          <RadioGroup
+            onChange={(e) => {
+              setdisability(e.target.value);
+              if (e.target.value === "نعم") {
+                setIsDisabilty(true);
+              } else {
+                setIsDisabilty(false);
+              }
+            }}
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+            }}
+          >
+            <FormControlLabel value="نعم" control={<Radio />} label="نعم" />
+            <FormControlLabel value="لا" control={<Radio />} label="لا" />
+          </RadioGroup>
+        </FormControl>
+
+        {isDisability && (
+          <>
+            {" "}
+            <label htmlFor="disabilityType">
+              فى حالة الإجابة بـ (نعم) برجاء تحديد نوع الإعاقة التى تتعامل معها
+              الجهة
+            </label>
+            <TextField
+              type="text"
+              id="disabilityType"
+              value={disabilityType}
+              size="small"
+              margin="normal"
+              onChange={(e) => setdisabilityType(e.target.value)}
+            />
+          </>
+        )}
+
+        {isDisability && (
+          <>
+            <label htmlFor="doubleDisability"> إعاقة مزدوجة (تُذكر )</label>
+            <TextField
+              type="text"
+              id="doubleDisability"
+              value={doubleDisability}
+              size="small"
+              margin="normal"
+              onChange={(e) => setdoubleDisability(e.target.value)}
+            />
+          </>
+        )}
+
+        {/*     //معلومات إضافية عن الخدمة ////////////    */}
+        <p className={classes.sub}>:الفئات المتاح لها الخدمة </p>
+        <label htmlFor="serviceIsFree">تكلفة الخدمة</label>
         <TextField
           type="text"
           id="serviceIsFree"
@@ -343,7 +422,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviceIsFree(e.target.value)}
         />
-        <label htmlFor="servicePrice"></label>
+        <label htmlFor="servicePrice">
+          في حالة خدمة مدفوعة الاجر، برجاء ذكر القيمة
+        </label>
         <TextField
           type="text"
           id="servicePrice"
@@ -352,7 +433,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setservicePrice(e.target.value)}
         />
-        <label htmlFor="serviceDays"></label>
+        <label htmlFor="serviceDays">ايام تقديم الخدمة</label>
         <TextField
           type="text"
           id="serviceDays"
@@ -361,7 +442,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviceDays(e.target.value)}
         />
-        <label htmlFor="serviceHours"></label>
+        <label htmlFor="serviceHours">ساعات تقديم الخدمة (من /الي)</label>
         <TextField
           type="text"
           id="serviceHours"
@@ -370,7 +451,9 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviceHours(e.target.value)}
         />
-        <label htmlFor="emergencyHours"></label>
+        <label htmlFor="emergencyHours">
+          المواعيد المخصصة لإستقبال الحالات الطارئة
+        </label>
         <TextField
           type="text"
           id="emergencyHours"
@@ -379,7 +462,10 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setemergencyHours(e.target.value)}
         />
-        <label htmlFor="serviceProviderPsyc"></label>
+        <p className={classes.sub}>
+          :الخدمات الإجتماعية/الدعم النفسي الإجتماعي
+        </p>
+        <label htmlFor="serviceProviderPsyc">مقدم الخدمة</label>
         <TextField
           type="text"
           id="serviceProviderPsyc"
@@ -388,7 +474,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviceProviderPsyc(e.target.value)}
         />
-        <label htmlFor="serviveTypePhsyc"></label>
+        <label htmlFor="serviveTypePhsyc">الخدمات التي يتم تقديمها</label>
         <TextField
           type="text"
           id="serviveTypePhsyc"
@@ -397,7 +483,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviveTypePhsyc(e.target.value)}
         />
-        <label htmlFor="serviveTypePhsycOther"></label>
+        <label htmlFor="serviveTypePhsycOther">اخري</label>
         <TextField
           type="text"
           id="serviveTypePhsycOther"
@@ -406,7 +492,8 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviveTypePhsycOther(e.target.value)}
         />
-        <label htmlFor="serviceProviderSec"></label>
+        <p className={classes.sub}>:الخدمات القانونية والأمنية</p>
+        <label htmlFor="serviceProviderSec">مقدم الخدمة</label>
         <TextField
           type="text"
           id="serviceProviderSec"
@@ -415,7 +502,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviceProviderSec(e.target.value)}
         />
-        <label htmlFor="serviveTypeSec"></label>
+        <label htmlFor="serviveTypeSec">الخدمات التي يتم تقديمها</label>
         <TextField
           type="text"
           id="serviveTypeSec"
@@ -424,7 +511,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviveTypeSec(e.target.value)}
         />
-        <label htmlFor="serviveTypeSecOther"></label>
+        <label htmlFor="serviveTypeSecOther">اخري</label>
         <TextField
           type="text"
           id="serviveTypeSecOther"
@@ -433,7 +520,8 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviveTypeSecOther(e.target.value)}
         />
-        <label htmlFor="serviceProvidermed"></label>
+        <p className={classes.sub}>:الخدمات الدعم الصحي</p>
+        <label htmlFor="serviceProvidermed">مقدم الخدمة</label>
         <TextField
           type="text"
           id="serviceProvidermed"
@@ -442,7 +530,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviceProvidermed(e.target.value)}
         />
-        <label htmlFor="serviveTypemed"></label>
+        <label htmlFor="serviveTypemed">الخدمات التي يتم تقديمها</label>
         <TextField
           type="text"
           id="serviveTypemed"
@@ -451,7 +539,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviveTypemed(e.target.value)}
         />
-        <label htmlFor="serviveTypemedOther"></label>
+        <label htmlFor="serviveTypemedOther">اخري</label>
         <TextField
           type="text"
           id="serviveTypemedOther"
@@ -460,7 +548,8 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setserviveTypemedOther(e.target.value)}
         />
-        <label htmlFor="terms"></label>
+        <p className={classes.sub}>:متطلبات واجراءات الحصول على الخدمة</p>
+        <label htmlFor="terms">الشروط</label>
         <TextField
           type="text"
           id="terms"
@@ -469,7 +558,7 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setterms(e.target.value)}
         />
-        <label htmlFor="documentsRequired"></label>
+        <label htmlFor="documentsRequired">المستندات المطلوبة</label>
         <TextField
           type="text"
           id="documentsRequired"
@@ -478,7 +567,10 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setdocumentsRequired(e.target.value)}
         />
-        <label htmlFor="basicActions"></label>
+        <label htmlFor="basicActions">
+          الإجراءات الأساسية (ما هى الخطوات التى يجب إتخاذها قبل وأثناء وبعد
+          الحصول على الخدمة؟)
+        </label>
         <TextField
           type="text"
           id="basicActions"
@@ -487,7 +579,6 @@ const NewEntryScreen = (props) => {
           margin="normal"
           onChange={(e) => setbasicActions(e.target.value)}
         />
-
         <button type="submit">Create</button>
       </form>
     </>
